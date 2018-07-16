@@ -1,0 +1,17 @@
+  public static int getColor(int i, int i2, float f) {
+        int red = Color.red(i);
+        int blue = Color.blue(i);
+        i = Color.green(i);
+        return Color.argb(3.57E-43f, (int) (((double) red) + (((double) (((float) (Color.red(i2) - red)) * f)) + 0.5d)), (int) (((double) i) + (((double) (((float) (Color.green(i2) - i)) * f)) + 0)), (int) (((double) blue) + (((double) (((float) (Color.blue(i2) - blue)) * f)) + 0)));
+    }
+  if (y <= 0) {
+            textView.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
+        } else if (y > 0 && y <= imageHeight) {
+            float scale = (float) y / imageHeight;
+            float alpha = (255 * scale);
+            // 只是layout背景透明(仿知乎滑动效果)
+            textView.setBackgroundColor(Color.argb((int) alpha, 227, 29, 26));
+        } else {
+            textView.setBackgroundColor(Color.argb((int) 255, 227, 29, 26));
+        }
+    }
