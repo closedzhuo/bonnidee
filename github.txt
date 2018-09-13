@@ -1,4 +1,12 @@
-https://github.com/laobie/StatusBarUtil   状态栏的
+﻿https://github.com/laobie/StatusBarUtil   状态栏的
 https://github.com/akexorcist/Android-RoundCornerProgressBar  水平进度条
 https://github.com/LuckSiege/PictureSelector   选择图片的
 https://www.jianshu.com/p/3c471953e36d     自动排版布局
+https://github.com/YoKeyword/Fragmentation fragment 滑动帮助类
+https://github.com/YoKeyword/Fragmentation/tree/master/fragmentation_swipeback  滑动帮助类
+
+
+
+https://github.com/wasabeef/glide-transformations  高斯模糊 加 图片处理 
+
+https://github.com/xitu/gold-miner  翻译文档

@@ -1,0 +1,116 @@
+1.线程池
+	1.ThreadPoolExecutor
+	public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue,
+                              ThreadFactory threadFactory)
+
+    corePoolSize: 线程池中核心的线程数。默认情况核心线程是一致存活，及时没有任何操作。但是如果执行了 allowCoreThreaTimeOut() 方法，核心线程也是有可能被回收的，这取决于是否处于闲置状态 & keepAliveTime 。
+    maximumPollSize: 线程池所能容纳的最大线程数。超过限制，新线程会被阻塞。
+    keepAliveTime: 线程闲置超时等待时间。超过此值会被回收。
+    unit: 超时等待时间单位。
+    workQueue: 线程池中的任务队列。每次执行 execute() 会把 runnable 对象存储在这个队列中。
+    threadFactory: 线程工厂，为线程池提供创建新线程的功能。
+
+2.Executors
+
+    定长线程池 (FixedThreadPool)
+    单线程化线程池 (SingleThreadExecutor)
+    定时线程池 (ScheduledThreadPool)
+    缓存线程池 (CachedThreadPool)
+	
+	1.定长线程池 (FixedThreadPool)
+		
+    线程数量固定
+    只有核心线程，并且不会被回收
+    任务队列无限制，超出核心线程数的线程处于等待中
+    适用于控制线程的最大并发数
+
+	public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue<Runnable>());
+    }
+	案例
+	  private void fixedThreadPool() {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 10; i++) {
+            executorService.execute(getRunnable());
+        }
+    }
+	
+	2.单线程化线程池 (SingleThreadExecutor)
+	特点：
+
+    只有一个核心线程
+    任务队列无限制
+    不需要考虑线程同步问题
+    适用于一些 因为并发而导致问题的操作
+
+	   public static ExecutorService newSingleThreadExecutor() {
+        return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                                    0L, TimeUnit.MILLISECONDS,
+                                    new LinkedBlockingQueue<Runnable>()));
+    }
+		    private void singleThreadPool() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        for (int i = 0; i < 10; i++) {
+            executorService.execute(getRunnable());
+        }
+    }
+	3.定时线程池 (ScheduledThreadPool)
+	特点：
+
+    线程数量固定
+    非核心数量无限制
+    适用于定时&周期性任务
+
+	  public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+        return new ScheduledThreadPoolExecutor(corePoolSize);
+    }
+	
+	案例：
+
+
+    schedule(): 执行定时任务
+
+    scheduleAtFixedRate(): 执行周期任务 (从任务开始计时)
+
+    scheduleWithFixedDelay(): 执行周期任务 (从任务结束开始计时)
+
+    private void scheduledThreadPool() {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+//        scheduledExecutorService.schedule(getRunnable(), 1, TimeUnit.SECONDS);
+//        scheduledExecutorService.scheduleAtFixedRate(getRunnable(), 1, 1, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleWithFixedDelay(getRunnable(), 1, 1, TimeUnit.SECONDS);
+    }
+	特点：
+
+    无核心线程
+    非核心线程数量无限制
+    对于空闲线程回收灵活
+    适用于大量&耗时少的任务
+
+	4.可缓存线程池 (CachedThreadPool)
+		 public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }
+	  private void cacheThreadPool() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < 50; i++) {
+            executorService.execute(getRunnable());
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
