@@ -1,0 +1,30 @@
+一.数据结构
+	1.二分查找
+	2.分治算法
+	3.贪心算法
+	4.分支限界法
+二	Android基础
+	1.Application 生命周期
+		onCreate()// 程序创建的时候执行
+		onTerminate() //程序终止的时候执行
+		onLowMemory()//低内存的时候执行
+		onTrimMemory //程序在内存清理的时候执行
+		onConfigurationChanged  横竖屏改变
+	2.Activity 生命周期
+	3.Android Service ，InService ，Service 组件通信
+	4.onNewIntent
+	5.fragment 懒加载 ，参数传递，保存
+	6.ContentProvider 实例详解
+	7.BroadcastReceiver 实例详解
+	8.Android 消息机制
+	9.Binder 机制 共享内存实现原理
+	10.Android 事件分发机制
+	11.Android 多线程的实现 Thread，HandlerThread ，AsyncTask ,IntentService,Rxjava 工作原理
+	12.嵌套滑动实现原理
+	13.RecyclerView 和 listView 区别
+	14.View的绘制原理
+	15.View SunfaceView TextureView 
+	16.ViewPager 的缓存实现
+	17.requestLayout invalidate ，postInvalidate 区别
+	18.AndroidP 新特性
+	19.Android 俩种虚拟机

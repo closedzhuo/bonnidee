@@ -1,0 +1,1 @@
+gradlew processDebugManifest --stacktrace  // 查找具体报错位置
